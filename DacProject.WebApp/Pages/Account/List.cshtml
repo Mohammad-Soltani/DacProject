@@ -1,0 +1,56 @@
+﻿@page 
+@model DacProject.WebApp.Pages.Account.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Users List</h1>
+<div>
+    <a asp-page="Logout" style="float:right" class="btn btn-secondary m-1">Log Out</a>
+    @if(Request.Query["id"] == "Administrator"){
+        <a asp-page="Add" asp-route-Role=@Request.Query["id"] style="float:right" class="btn btn-primary m-1">Add New User</a>
+    }
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+                <td>Email</td>
+                <td>Role</td>
+                <td>Operation</td>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>
+                            @user.Id
+                        </td>
+                        <td>
+                            @user.FirstName
+                        </td>
+                        <td>
+                            @user.LastName
+                        </td>
+                        <td>
+                            @user.Email
+                        </td>
+                        <td>
+                            @user.Role
+                        </td>
+                        <td>
+                                <a asp-page="View" asp-route-ID=@user.Id asp-route-Role=@Request.Query["id"] class="btn btn-primary m-1">View</a>
+                            
+                                @if(Request.Query["id"] == "Administrator"){
+
+                                    <a asp-page="Edit" asp-route-ID=@user.Id asp-route-Role=@Request.Query["id"] class="btn btn-primary m-1">Edit</a>
+                                    <a asp-page="Delete" asp-route-ID=@user.Id asp-route-Role=@Request.Query["id"] class="btn btn-danger m-1">Delete</a>
+                                }
+                        </td>
+                    </tr>
+                }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,39 @@
+﻿@page
+@model DacProject.WebApp.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+
+<div class="container border" style="padding:20px">
+    @if (Request.Query["Valid"] == "False")
+    {
+        <span class="text-danger">The information entered is invalid</span>
+    }
+    <form method="post" class="px-4 py-3">
+        <div class="mb-3">
+            <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" required="true" asp-for="credential.Email" placeholder="Please Enter Email Address">
+            <span class="text-danger" asp-validation-for="credential.Email"></span>
+            @if (Request.Query["UserHasExist"] == "False")
+            {
+                <small class="form-text text-danger">
+                   Couldn’t find an account associated with this email.
+                </small>
+            }
+        </div>
+        <div class="mb-3">
+            <label for="exampleDropdownFormPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" required="true" asp-for="credential.Password" placeholder="Please Enter Password">
+            <span class="text-danger" asp-validation-for="credential.Password"></span>
+            @if (Request.Query["IncorrectPasswordFormat"] == "True")
+            {
+                <small class="form-text text-danger">
+                   Password is incorrect.
+                </small>
+            }
+        </div>
+        <button id="SubmitBtn" class="btn btn-primary">Sign in</button>
+    </form>
+</div>

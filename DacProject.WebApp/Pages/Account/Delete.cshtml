@@ -1,0 +1,19 @@
+﻿@page "{id:min(1)}"
+@model DacProject.WebApp.Pages.Account.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete Confirmation</h1>
+
+<div class="alert alert-danger">
+    @if (Model.user is not null)
+    {
+        <h5>Are you sure you want to delete @string.Format("{0} {1}", Model.user.FirstName, Model.user.LastName)?</h5>
+    
+        <form method="post">
+            <button type="submit" class="btn btn-danger">Yes</button>
+            <a class="btn btn-primary" asp-page="List" asp-route-id=@Request.Query["Role"]>No</a>
+        </form>
+    }
+</div>

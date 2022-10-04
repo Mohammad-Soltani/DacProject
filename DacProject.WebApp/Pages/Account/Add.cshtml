@@ -1,0 +1,35 @@
+﻿@page
+@model DacProject.WebApp.Pages.Account.AddModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add New User</h1>
+
+<div class="container border" style="padding:20px">
+        <form method="post" class="px-4 py-3">
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" asp-for="user.FirstName" placeholder="Please Enter FirstName">
+                <span class="text-danger" asp-validation-for="user.FirstName" ></span>
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" asp-for="user.LastName" placeholder="Please Enter LastName">
+                <span class="text-danger" asp-validation-for="user.LastName" ></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" asp-for="user.Email" placeholder="Please Enetr Email Address">
+                <span class="text-danger" asp-validation-for="user.Email" ></span>
+            
+                <label class="form-label">Role</label>
+                <input type="text" class="form-control" asp-for="user.Role" placeholder="Please Enetr User Role">
+                <span class="text-danger" asp-validation-for="user.Role" ></span>
+
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" asp-for="user.Password" placeholder="Please Enetr Password">
+                <span class="text-danger" asp-validation-for="user.Password" ></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a asp-page="List" asp-route-id=@Request.Query["Role"] class="btn btn-secondary">Cancel</a>
+        </form>
+</div>
